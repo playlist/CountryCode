@@ -21,11 +21,11 @@ import CoreTelephony
 }
 
 /// Structure of country code picker
-struct Country {
-    var code: String?
-    var name: String?
-    var phoneCode: String?
-    var flagName: String
+public struct Country {
+    public let code: String?
+    public let name: String?
+    public let phoneCode: String?
+    public let flagName: String
     
     /// Country code initialization
     ///
@@ -67,7 +67,7 @@ open class CountryPicker: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSo
     
     /// Setup country code picker
     func setup() {
-        countries = countryNamesByCode()
+        countries = CountryPicker.countryNamesByCode()
         
         super.dataSource = self
         super.delegate = self
@@ -118,9 +118,9 @@ open class CountryPicker: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSo
     /// sorted array with data
     ///
     /// - Returns: sorted array with all information phone, flag, name
-    func countryNamesByCode() -> [Country] {
+    open static func countryNamesByCode() -> [Country] {
         var countries = [Country]()
-        let frameworkBundle = Bundle(for: type(of: self))
+        let frameworkBundle = Bundle(for: self)
         guard let jsonPath = frameworkBundle.path(forResource: "CountryPicker.bundle/Data/countryCodes", ofType: "json"), let jsonData = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)) else {
             return countries
         }
