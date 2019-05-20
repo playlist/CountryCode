@@ -45,7 +45,7 @@ import CoreTelephony
 
 open class CountryPicker: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    open static var countries: [Country] = CountryPicker.initCountries()
+    public static var countries: [Country] = CountryPicker.initCountries()
     open weak var countryPickerDelegate: CountryPickerDelegate?
     open var showPhoneNumbers: Bool = true
 
@@ -118,7 +118,7 @@ open class CountryPicker: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSo
     ///
     /// - Returns: sorted array with all information phone, flag, name
 
-    open static func initCountries() -> [Country] {
+    public static func initCountries() -> [Country] {
         var countries = [Country]()
         let frameworkBundle = Bundle(for: self)
         guard let jsonPath = frameworkBundle.path(forResource: "CountryPicker.bundle/Data/countryCodes", ofType: "json"), let jsonData = try? Data(contentsOf: URL(fileURLWithPath: jsonPath)) else {
